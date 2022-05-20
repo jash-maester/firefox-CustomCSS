@@ -1,0 +1,291 @@
+    @media (prefers-color-scheme: dark) { :root {
+
+        --window-colour:                     #1E2021;
+        --secondary-colour:                  #191B1C;
+        --inverted-colour:                   #FAFAFC;
+
+        /* Containter Tab Colours */
+        --uc-identity-color-blue:            #7ED6DF;
+        --uc-identity-color-turquoise:       #55E6C1;
+        --uc-identity-color-green:           #B8E994;
+        --uc-identity-color-yellow:          #F7D794;
+        --uc-identity-color-orange:          #F19066;
+        --uc-identity-color-red:             #FC5C65;
+        --uc-identity-color-pink:            #F78FB3;
+        --uc-identity-color-purple:          #786FA6;
+
+        --uc-identity-color-blue-muted:      #7ED6DF99;
+        --uc-identity-color-turquoise-muted: #55E6C199;
+        --uc-identity-color-green-muted:     #B8E99499;
+        --uc-identity-color-yellow-muted:    #F7D794CC;
+        --uc-identity-color-orange-muted:    #F19066FF;
+        --uc-identity-color-red-muted:       #FC5C65FF;
+        --uc-identity-color-pink-muted:      #F78FB399;
+        --uc-identity-color-purple-muted:    #786FA6FF;
+
+    }}
+
+
+
+    @media (prefers-color-scheme: light) { :root {
+
+        --window-colour:                     #FAFAFC;
+        --secondary-colour:                  #EAEAEC;
+        --inverted-colour:                   #1E2021;
+
+        /* Containter Tab Colours */
+        --uc-identity-color-blue:            #1D65F5;
+        --uc-identity-color-turquoise:       #209FB5;
+        --uc-identity-color-green:           #40A02B;
+        --uc-identity-color-yellow:          #E49320;
+        --uc-identity-color-orange:          #FE640B;
+        --uc-identity-color-red:             #FC5C65;
+        --uc-identity-color-pink:            #EC83D0;
+        --uc-identity-color-purple:          #822FEE;
+
+        --uc-identity-color-blue-muted:      #1D65F5FF;
+        --uc-identity-color-turquoise-muted: #209FB5FF;
+        --uc-identity-color-green-muted:     #40A02BFF;
+        --uc-identity-color-yellow-muted:    #E49320FF;
+        --uc-identity-color-orange-muted:    #FE640BFF;
+        --uc-identity-color-red-muted:       #FC5C65FF;
+        --uc-identity-color-pink-muted:      #EC83D0FF;
+        --uc-identity-color-purple-muted:    #822FEEFF;
+
+    }}
+
+
+:root[uidensity="compact"]{
+  --tab-block-margin: 2px !important;
+}
+
+/* Modify these to change relative widths or default height */
+#navigator-toolbox{
+  --uc-navigationbar-width: 40vw;
+  --uc-toolbar-height: 40px;
+  --uc-urlbar-min-width: 50vw; /* minimum width for opened urlbar */
+}
+
+#scrollbutton-up,
+#scrollbutton-down{ border-block-width: 2px !important; }
+
+/* Override for other densities */
+:root[uidensity="compact"] #navigator-toolbox{ --uc-toolbar-height: 34px; }
+:root[uidensity="touch"] #navigator-toolbox{ --uc-toolbar-height: 44px; }
+
+/* prevent urlbar overflow on narrow windows */
+/* Dependent on how many items are in navigation toolbar ADJUST AS NEEDED */
+@media screen and (max-width: 1500px){
+  #urlbar-container{ min-width:unset !important }
+}
+
+#TabsToolbar{
+  margin-left: var(--uc-navigationbar-width);
+  --tabs-navbar-shadow-size: 0px;
+}
+#tabbrowser-tabs{
+  --tab-min-height: calc(var(--uc-toolbar-height) - 2 * var(--tab-block-margin,0px)) !important;
+}
+
+/* This isn't useful when tabs start in the middle of the window */
+
+.titlebar-spacer[type="pre-tabs"]{ display: none }
+
+#navigator-toolbox > #nav-bar{
+  margin-right:calc(100vw - var(--uc-navigationbar-width));
+  margin-top: calc(0px - var(--uc-toolbar-height));
+}
+
+/* Window drag space  */
+:root[tabsintitlebar="true"] #nav-bar{ padding-left: 24px !important }
+
+/* Rules specific to window controls on right layout */
+@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled"){
+  .titlebar-buttonbox-container{ position: fixed; display: block; left: 0px; z-index: 3; }
+  :root[tabsintitlebar="true"] #nav-bar{ padding-left: 96px !important; padding-right: 0px !important; }
+}
+
+/* 1px margin on touch density causes tabs to be too high */
+.tab-close-button{ margin-top: 0 !important }
+
+/* Make opened urlbar overlay the toolbar */
+#urlbar[open]:focus-within{ min-width: var(--uc-urlbar-min-width,none) !important; }
+
+/* Hide dropdown placeholder */
+#urlbar-container:not(:hover) .urlbar-history-dropmarker{ margin-inline-start: -28px; }
+
+/* Fix customization view */
+#customization-panelWrapper > .panel-arrowbox > .panel-arrow{ margin-inline-end: initial !important; }
+
+/* Make bunch of things in the main UI round */
+
+:root{ --toolbarbutton-border-radius: 24px !important }
+#urlbar-input-container > box:hover,
+#urlbar-input-container > box[open],
+#main-menubar >  menu,
+.titlebar-button:hover,
+#scrollbutton-up,
+#scrollbutton-down,
+.tab-close-button,
+.close-icon > image,
+#page-action-buttons > :hover,
+.panel-arrowcontent,
+.urlbarView-row-inner,
+.search-one-offs button,
+.subviewbutton-back,
+.toolbaritem-combined-buttons > toolbarbutton,
+#PopupSearchAutoComplete,
+menupopup{ border-radius: 18px }
+
+button,
+.tab-background{ border-radius: 30px !important; }
+
+.panel-arrowcontent{ margin-inline-end: 0 !important; }
+.panel-arrow{ margin-inline: 17px !important; }
+
+menupopup{ -moz-appearance: none !important; overflow: -moz-hidden-unscrollable !important; }
+
+.tabbrowser-tab[selected]::after,
+.tabbrowser-tab[beforeselected-visible]::after{ border-color: transparent !important; }
+
+#nav-bar{ box-shadow: none !important; margin-top: 3px }
+.tab-line{ display: none }
+
+.tab-background[selected]{
+  border-top-width: 2px !important;
+  border-top-color: var(--lwt-tab-line-color) !important;
+}
+.tabbrowser-tab[selected]{ z-index: auto !important; }
+
+.urlbar-icon,
+toolbar toolbarbutton:not(#back-button):not(.bookmark-item):not(.titlebar-button) > .toolbarbutton-icon{  border-radius: 0px !important; clip-path: circle() }
+
+menugroup:hover > menuitem{ clip-path: circle() }
+
+
+:root {
+
+    --uc-theme-colour:                          var(--window-colour,    var(--toolbar-bgcolor));
+    --uc-hover-colour:                          var(--secondary-colour, rgba(0, 0, 0, 0.2));
+    --uc-inverted-colour:                       var(--inverted-colour,  var(--toolbar-color));
+
+    --button-bgcolor:                           var(--uc-theme-colour)    !important;
+    --button-hover-bgcolor:                     var(--uc-hover-colour)    !important;
+    --button-active-bgcolor:                    var(--uc-hover-colour)    !important;
+
+    --toolbarbutton-border-radius:              var(--uc-border-radius)   !important;
+
+    --tab-border-radius:                        var(--uc-border-radius)   !important;
+    --lwt-text-color:                           var(--uc-inverted-colour) !important;
+    --lwt-tab-text:                             var(--uc-inverted-colour) !important;
+
+    --arrowpanel-border-radius:                 var(--uc-border-radius)   !important;
+
+    --tab-block-margin: 2px !important;
+
+}
+
+
+#nav-bar {
+
+    border:     none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+
+}
+
+
+/* remove border below whole nav */
+#navigator-toolbox { border-bottom: none !important; }
+
+
+#urlbar,
+#urlbar * {
+
+    outline: none !important;
+    box-shadow: none !important;
+
+}
+
+#urlbar[focused="true"]
+    > #urlbar-background,
+#urlbar:not([open])
+    > #urlbar-background { background: transparent !important; }
+#urlbar[open]
+    > #urlbar-background { background: var(--uc-theme-colour) !important; }
+
+
+.urlbarView-row:hover
+    > .urlbarView-row-inner,
+.urlbarView-row[selected]
+    > .urlbarView-row-inner { background: var(--uc-hover-colour) !important; }
+
+/* Always show tab close button on hover and never otherwise */
+.tabbrowser-tab .tab-close-button{
+  display:none;
+}
+.tabbrowser-tab:not([pinned]):hover .tab-close-button{
+  display:-moz-box !important;
+}
+
+#PersonalToolbar{
+  --uc-bm-height: 20px; /* Might need to adjust if the toolbar has other buttons */
+  --uc-bm-padding: 7px; /* Vertical padding to be applied to bookmarks */
+  --uc-autohide-toolbar-delay: 600ms; /* The toolbar is hidden after 0.6s */
+  
+  /* 0deg = "show" ; 90deg = "hide" ;  Set the following to control when bookmarks are shown */
+  --uc-autohide-toolbar-focus-rotation: 0deg; /* urlbar is focused */
+  --uc-autohide-toolbar-hover-rotation: 0deg; /* cursor is over the toolbar area */
+}
+
+:root[uidensity="compact"] #PersonalToolbar{ --uc-bm-padding: 1px; }
+:root[uidensity="touch"] #PersonalToolbar{ --uc-bm-padding: 7px }
+
+#PersonalToolbar:not([customizing]){
+  position: relative;
+  margin-bottom: calc(0px - var(--uc-bm-height) - 2 * var(--uc-bm-padding));
+  transform: rotateX(90deg);
+  transform-origin: top;
+  transition: transform 135ms linear var(--uc-autohide-toolbar-delay) !important;
+  z-index: 1;
+  /* The following properties should allow the themes with trasparent toolbars to work */
+  background-color: transparent !important;
+  background-repeat: no-repeat,no-repeat,var(--lwt-background-tiling);
+  --uc-bg-y: calc(-2 * (var(--tab-block-margin) + var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)) - var(--tab-min-height) - 16px - var(--bookmark-block-padding));
+  background-position: top left,top left,var(--lwt-background-alignment,top left);
+  background-position-y:top,top,var(--uc-bg-y),var(--uc-bg-y),var(--uc-bg-y);
+  background-image: var(--toolbar-bgimage), linear-gradient(var(--toolbar-bgcolor),var(--toolbar-bgcolor)),var(--lwt-header-image,var(--lwt-additional-images)) !important;
+}
+
+#PlacesToolbarItems > .bookmark-item,
+#OtherBookmarks,
+#PersonalToolbar > #import-button{
+  padding-block: var(--uc-bm-padding) !important;
+}
+
+#nav-bar:focus-within + #PersonalToolbar{
+  transition-delay: 100ms !important;
+  transform: rotateX(var(--uc-autohide-toolbar-focus-rotation,0));
+}
+
+#navigator-toolbox:hover > #PersonalToolbar{
+  transition-delay: 100ms !important;
+  transform: rotateX(var(--uc-autohide-toolbar-hover-rotation,0));
+}
+
+#navigator-toolbox:hover > #nav-bar:focus-within + #PersonalToolbar {  
+  transform: rotateX(0);
+}
+
+/* Remove Window Controls */
+.titlebar-buttonbox-container { display: none !important; }
+
+/* Container Tabs */
+.identity-color-blue      { --identity-tab-color: var(--uc-identity-color-blue)      !important; --identity-icon-color: var(--uc-identity-color-blue)      !important; --uc-identity-gradient-color: var(--uc-identity-color-blue-muted) !important; }
+.identity-color-turquoise { --identity-tab-color: var(--uc-identity-color-turquoise) !important; --identity-icon-color: var(--uc-identity-color-turquoise) !important; --uc-identity-gradient-color: var(--uc-identity-color-turquoise-muted) !important;  }
+.identity-color-green     { --identity-tab-color: var(--uc-identity-color-green)     !important; --identity-icon-color: var(--uc-identity-color-green)     !important; --uc-identity-gradient-color: var(--uc-identity-color-green-muted) !important;  }
+.identity-color-yellow    { --identity-tab-color: var(--uc-identity-color-yellow)    !important; --identity-icon-color: var(--uc-identity-color-yellow)    !important; --uc-identity-gradient-color: var(--uc-identity-color-yellow-muted) !important;  }
+.identity-color-orange    { --identity-tab-color: var(--uc-identity-color-orange)    !important; --identity-icon-color: var(--uc-identity-color-orange)    !important; --uc-identity-gradient-color: var(--uc-identity-color-orange-muted) !important;  }
+.identity-color-red       { --identity-tab-color: var(--uc-identity-color-red)       !important; --identity-icon-color: var(--uc-identity-color-red)       !important; --uc-identity-gradient-color: var(--uc-identity-color-red-muted) !important;  }
+.identity-color-pink      { --identity-tab-color: var(--uc-identity-color-pink)      !important; --identity-icon-color: var(--uc-identity-color-pink)      !important; --uc-identity-gradient-color: var(--uc-identity-color-pink-muted) !important;  }
+.identity-color-purple    { --identity-tab-color: var(--uc-identity-color-purple)    !important; --identity-icon-color: var(--uc-identity-color-purple)    !important; --uc-identity-gradient-color: var(--uc-identity-color-purple-muted) !important;  }
